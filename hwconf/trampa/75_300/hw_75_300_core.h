@@ -123,7 +123,7 @@
 
 // ADC macros and settings
 
-// Component parameters (can be overridden)
+// Component parameters (can be overridden) //Changed resistor divider values by factor of 10, L134 2200.0 to 220.0
 #ifndef V_REG
 #define V_REG					3.44
 #endif
@@ -131,7 +131,7 @@
 #define VIN_R1					56000.0
 #endif
 #ifndef VIN_R2
-#define VIN_R2					2200.0
+#define VIN_R2					220.0
 #endif
 #ifndef CURRENT_AMP_GAIN
 #define CURRENT_AMP_GAIN		20.0
@@ -276,7 +276,7 @@
 #define MCCONF_L_MIN_VOLTAGE			12.0		// Minimum input voltage
 #endif
 #ifndef MCCONF_L_MAX_VOLTAGE
-#define MCCONF_L_MAX_VOLTAGE			72.0	// Maximum input voltage
+#define MCCONF_L_MAX_VOLTAGE			720.0	// Maximum input voltage. Change for 10x multiplier
 #endif
 #ifndef MCCONF_DEFAULT_MOTOR_TYPE
 #define MCCONF_DEFAULT_MOTOR_TYPE		MOTOR_TYPE_FOC
@@ -296,12 +296,18 @@
 #ifndef MCCONF_L_IN_CURRENT_MIN
 #define MCCONF_L_IN_CURRENT_MIN			-200.0	// Input current limit in Amperes (Lower)
 #endif
+#ifndef MCCONF_L_WATT_MAX
+#define MCCONF_L_WATT_MAX               1500000.0    // Maximum wattage output. For 15kW power
+#endif
+#ifndef MCCONF_L_WATT_MIN
+#define MCCONF_L_WATT_MIN               -1500000.0    // Minimum wattage output (braking). For 15kW power
+#endif
 
 // Setting limits
 #define HW_LIM_CURRENT			-400.0, 400.0
 #define HW_LIM_CURRENT_IN		-400.0, 400.0
 #define HW_LIM_CURRENT_ABS		0.0, 480.0
-#define HW_LIM_VIN				11.0, 72.0
+#define HW_LIM_VIN				11.0, 720.0 // Changed for 10x multiplier
 #define HW_LIM_ERPM				-200e3, 200e3
 #define HW_LIM_DUTY_MIN			0.0, 0.1
 #define HW_LIM_DUTY_MAX			0.0, 0.99
